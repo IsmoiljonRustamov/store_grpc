@@ -1,0 +1,33 @@
+syntax="proto3";
+
+package genprot;  
+
+option go_package = "genproto/store";
+
+import "google/protobuf/empty.proto";
+
+message Store {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    bool is_open = 4;
+    repeated string addresses = 5;
+}
+
+message GetStoreRequest {
+    int64 id = 1;
+
+}
+
+
+service StoreService {
+    rpc CreateStore(Store) returns (Store) {}
+    rpc GetStore(GetStoreRequest) returns (Store) {}      
+    rpc UpdateStore(Store) returns(google.protobuf.Empty) {}
+    rpc DeleteStore(GetStoreRequest) returns(google.protobuf.Empty) {}
+ 
+}
+
+
+
+
